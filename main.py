@@ -90,11 +90,10 @@ def main():
         return
 
     # Print rover1 end position
-
+    print(f"{rover1.x_position} {rover1.y_position} {rover1.heading}")
     # Print rover2 end position
+    print(f"{rover2.x_position} {rover2.y_position} {rover2.heading}")
 
-
-    
 
 if __name__ == "__main__":
     main()
