@@ -27,7 +27,7 @@ def main():
         if(Plateau.is_within_plateau(plateau, start_x_position, start_y_position)):
             # Initialise first rover objext
             rover1 = Rover()
-            rover1.x_position, rover1.y_position, heading = start_x_position, start_y_position, start_heading
+            rover1.x_position, rover1.y_position, rover1.heading, rover1.plateau = start_x_position, start_y_position, start_heading, plateau
         else: 
             raise ValueError("Start position is not within plateau bounds")
             

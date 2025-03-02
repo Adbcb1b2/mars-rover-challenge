@@ -1,3 +1,4 @@
+from Plateau import Plateau
 class Rover:
     """ 
     A class used to represent a Rover
@@ -13,6 +14,9 @@ class Rover:
     heading: str
         the direction in which the rover is facing ('N', 'E', 'W', 'S')
 
+    plateau: Plateau
+        the plateau on which the rover is moving
+
     Methods
     ----------
     turn_left(self)
@@ -25,7 +29,7 @@ class Rover:
         Move the rover one space in the direction of the current heading
     """
 
-    def __init__(self, x_position=0, y_position=0, heading='N'):
+    def __init__(self, x_position=0, y_position=0, heading='N', plateau=None):
         """ 
         Parameters
         ----------
@@ -43,6 +47,7 @@ class Rover:
         self.__x_position = x_position
         self.__y_position = y_position
         self.__heading = heading
+        self.__plateau = plateau
 
     # Getter for x position
     @property
@@ -113,6 +118,25 @@ class Rover:
         else:
             raise ValueError("Heading value must be 'N', 'E', 'S' or 'W'")
         
+    # Getter for plateau
+    @property
+    def plateau(self):
+        return self.__plateau
+
+    # Setter for plateau
+    @plateau.setter
+    def plateau(self, value):
+        """
+        Sets the plateau for the rover
+
+        Ensures the plateau is an instance of the Plateau class.
+        """
+        if isinstance(value, Plateau):
+            self.__plateau = value
+        else:
+            raise ValueError("Plateau must be an instance of the Plateau class.")
+        
+        
     # Method to change rover direction by 90 degrees left
     def turn_left(self):
         """
@@ -138,16 +162,21 @@ class Rover:
         """
         Moves the rover one unit forward, in the direction of the current heading
         """
-        if self.__heading == "N":
-            # If facing North, y coordinate increases by 1
-            self.__y_position += 1
-        elif self.__heading == "E":
-            # If facing East, x coordinate increases by 1
-            self.__x_position += 1
-        elif self.__heading == "S":
-            # If facing South, y coordingate decreases by 1
-            self.__y_position -= 1
-        elif self.__heading == "W":
-            # If facing west, x coordinate decreases by 1
-            self.__x_position -= 1
+        # Calculate the new position
+        new_x, new_y = self.__x_position, self.__y_position
 
+        if self.__heading == "N":
+            new_y += 1
+        elif self.__heading == "E":
+            new_x += 1
+        elif self.__heading == "S":
+            new_y -= 1
+        elif self.__heading == "W":
+            new_x -= 1
+
+        # Check if the move is within bounds before updating position
+        if self.__plateau.is_within_bounds(new_x, new_y):
+            self.__x_position = new_x
+            self.__y_position = new_y
+        else:
+            raise ValueError("Cannot move rover out of plateau bounds")
