@@ -79,3 +79,32 @@ def validate_rover_start_input(user_input):
 
     return x_position, y_position, heading
 
+def validate_movement_commands_input(user_input):
+    """
+    Validates that the movement command string only accepts valid movement commands
+
+    Parameters
+    ----------
+    user_input: str
+        The input provided by the user, expect to be a tring of characters containing 'L', 'R' or 'M' only
+
+    Returns
+    -------
+    str
+        The validated movement commands string. 
+
+    Raises
+    ------
+    ValueError
+        If the input contains any invalid characters
+
+    """
+    # Remove trailing whitespaces
+    user_input = user_input.strip().upper()
+
+    # Check the input only contains valid characters
+    for letter in user_input:
+        if letter not in ('L', 'R', 'M'):
+            raise ValueError("Movement command input should only contain 'L', 'R' and 'M'")
+
+    return user_input

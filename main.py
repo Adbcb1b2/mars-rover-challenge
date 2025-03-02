@@ -36,14 +36,15 @@ def main():
         print(f"Invalid start position: {error}")
         return
     
-
-    # Validate input
-    # Append input to a list [x,y,H]
-    # Check start position is within bounds of plataeu
-    # Create object for rover 1
-    # Get input for movement commands
-    # Validate movement commands
-    # Attempt to process movement commands
+    # Get input for rover1 movements
+    movements_rover1 = input("Please enter the movement commands for rover 1 (e.g. LMLMLMLMM)")
+    # If validation passes
+    try:
+        movements_rover1 = Validations.validate_movement_commands_input(movements_rover1)
+        ## To do: Apply movement
+    except ValueError as error:
+        print(f"Invalid movement commands: {error}")
+        return
 
     # Get input for rover2 start position e.g. 1 2 N
     # Validate input
