@@ -175,7 +175,7 @@ class Rover:
             new_x -= 1
 
         # Check if the move is within bounds before updating position
-        if self.__plateau.is_within_bounds(new_x, new_y):
+        if self.__plateau.is_within_plateau(new_x, new_y):
             self.__x_position = new_x
             self.__y_position = new_y
         else:

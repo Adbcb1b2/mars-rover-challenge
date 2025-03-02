@@ -22,12 +22,13 @@ class MovementProcessor:
         rover: Rover
             The rover instance the commands are to be applied to
         """
-
         self.rover = rover
 
     def process_commands(self, commands):
         """
         Processes a string of movement commands to a rover
+
+        determines which method to apply to the rover from the input string
 
         Parameters
         ----------
@@ -35,7 +36,6 @@ class MovementProcessor:
             A string containing the movement commands ('L', 'R' or 'M')
 
         """
-
         for command in commands:
             if command == 'L':
                 self.rover.turn_left()
