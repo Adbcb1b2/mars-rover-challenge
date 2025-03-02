@@ -9,7 +9,7 @@ class MovementProcessor:
 
     Methods
     -------
-    apply_movement(commands: str)
+    process_commands(commands: str)
         Applies the movement commands to the rover's starting position
     """
 

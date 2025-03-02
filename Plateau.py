@@ -52,7 +52,7 @@ class Plateau:
         if isinstance(value, int) and value >= 0:
             self.__width = value
         else:
-            raise ValueError("width must be a positive integer")
+            raise ValueError("Width must be a positive integer")
     
     # Getter for the height
     @property
@@ -75,7 +75,7 @@ class Plateau:
         if isinstance(value, int) and value >= 0:
             self.__height = value
         else:
-            raise ValueError("height must be a positive integer")
+            raise ValueError("Height must be a positive integer")
         
     def is_within_plateau(self, x_position, y_position):
         """

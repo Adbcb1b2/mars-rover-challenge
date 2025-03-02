@@ -26,7 +26,7 @@ class Rover:
         Changes the direction of the rover by 90 degrees clockwise e.g. the heading 'N' becomes 'E'
 
     move(self)
-        Move the rover one space in the direction of the current heading
+        Move the rover one space in the direction of the current heading, checking the new space will be within bounds
     """
 
     def __init__(self, x_position=0, y_position=0, heading='N', plateau=None):
@@ -160,7 +160,9 @@ class Rover:
     # Method to move the rover, directiond determined by current heading
     def move(self):
         """
-        Moves the rover one unit forward, in the direction of the current heading
+`        Moves the rover one unit forward, in the direction of the current heading
+
+        checks the movement will be within the bounds of the plateau before returning.
         """
         # Calculate the new position
         new_x, new_y = self.__x_position, self.__y_position
