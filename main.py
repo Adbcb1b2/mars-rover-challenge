@@ -1,5 +1,5 @@
-import Plateau
-import Rover
+from Plateau import Plateau
+from Rover import Rover
 import Validations
 
 #Entry point of the program
@@ -38,7 +38,7 @@ def main():
     # Print rover2 end position
 
 
-    pass
+    
 
 if __name__ == "__main__":
     main()
