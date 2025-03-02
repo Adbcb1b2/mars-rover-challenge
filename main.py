@@ -1,10 +1,20 @@
 import Plateau
 import Rover
+import Validations
 
 #Entry point of the program
 def main():
     # Get input for plateau coordinates
-    
+    plateau_dimensions = input("Please enter the coordinates of the upper right corner of the plateau (e.g 5 5)")
+    try:
+        #Initialise plataeu object
+        plateau = Plateau()
+        # Set Plateau attributes
+        plateau.width, plateau.height = Validations.validate_plateau_input(plateau_dimensions)
+    except ValueError as error:
+        print(f"Invalid plateau dimensions: {error}")
+
+
     # Attempt to set plataeu coordinates in Plateau class
     # Get input for rover1 start position e.g. 1 2 N
     # Validate input

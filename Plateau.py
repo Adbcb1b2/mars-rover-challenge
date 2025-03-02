@@ -73,7 +73,7 @@ class Plateau:
             If the value is not a positive integer
         """
         if isinstance(value, int) and value >= 0:
-            self.height = value
+            self.__height = value
         else:
             raise ValueError("height must be a positive integer")
         
