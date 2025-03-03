@@ -26,6 +26,7 @@ def initialise_rover(plateau, rover_id):
     while True:
         start_position = input(f"Please enter the start position for Rover {rover_id} (e.g. 1 2 N)")
         try:
+            # Validate input
             start_x_position, start_y_position, start_heading = Validations.validate_rover_start_input(start_position)
             # If start position is within bounds
             if(Plateau.is_within_plateau(plateau, start_x_position, start_y_position)):
@@ -40,67 +41,38 @@ def initialise_rover(plateau, rover_id):
         # If validation fails
         except ValueError as error:
             print(f"Invalid start position for Rover {rover_id}: {error}. Please try again")
-              
-
-
             
-#     # Get input for rover1 movements
-#     movements_rover1 = input("Please enter the movement commands for Rover 1 (e.g. LMLMLMLMM)")
-#     # If validation passes
-#     try:
-#         # Validate input string
-#         movements_rover1 = Validations.validate_movement_commands_input(movements_rover1)
-#         # Apply movement
-#         # Initialise a movements proccessor
-#         movements_processer1 = MovementProcessor(rover1)
-#         # Use the Movement Processor to process the commands
-#         movements_processer1.process_commands(movements_rover1)
+def process_rover_movements(rover, rover_id):
+    """
+    Prompt the user for movement commands, if valid apply to given rover
+    """
+    while True:
+        movements = input(f"Please enter the movement commands for Rover {rover_id} (e.g. LMLMLMLMM)")
+        try:
+            # Validate input
+            movements = Validations.validate_movement_commands_input(movements)
+            # Initialise Movement Processor, passing the rover instance
+            movements_processor = MovementProcessor(rover)
+            # Apply the comments to the rover
+            movements_processor.process_commands(movements)
+            return
+        except ValueError as error:
+            print(f"Invalid movement commands: {error}. Please try again")
 
-        
-#     except ValueError as error:
-#         print(f"Invalid movement commands for Rover 1: {error}")
-#         return
 
-#     # Get input for rover2 start position e.g. 1 2 N
-#     start_position_2 = input("Please enter the start position for Rover 2 (e.g. 1 2 W)")
-    
-#     # If validation passes
-#     try:
-#         # Set start position if validation passes
-#         start_x_position, start_y_position, start_heading = Validations.validate_rover_start_input(start_position_2)
-#         # Check start position is within the plateau bounds
-#         if(Plateau.is_within_plateau(plateau, start_x_position, start_y_position)):
-#             # Initialise first rover objext
-#             rover2 = Rover()
-#             rover2.x_position, rover2.y_position, rover2.heading, rover2.plateau = start_x_position, start_y_position, start_heading, plateau
-#         else: 
-#             raise ValueError("Start position is not within plateau bounds")
-            
-#     # If validation fails
-#     except ValueError as error:
-#         print(f"Invalid start position: {error}")
-#         return
+def main():
+    plateau = initialise_plateau()
 
-#     # Get input for rover2 movements
-#     movements_rover2 = input("Please enter the movement commands for Rover 2 (e.g. LMLMLMLMM)")
-#     # If validation passes
-#     try:
-#         # Validate input string
-#         movements_rover2 = Validations.validate_movement_commands_input(movements_rover2)
-#         # Apply movement
-#         # Initialise a movements proccessor
-#         movements_processer2 = MovementProcessor(rover2)
-#         # Use the Movement Processor to process the commands
-#         movements_processer2.process_commands(movements_rover2)
-#     except ValueError as error:
-#         print(f"Invalid movement commands for Rover 2: {error}")
-#         return
+    rover1 = initialise_rover(plateau, 1)
+    process_rover_movements(rover1, 1)
 
-#     # Print rover1 end position
-#     print(f"{rover1.x_position} {rover1.y_position} {rover1.heading}")
-#     # Print rover2 end position
-#     print(f"{rover2.x_position} {rover2.y_position} {rover2.heading}")
+    rover2 = initialise_rover(plateau, 2)
+    process_rover_movements(rover2, 2)
 
+    # Print rover1 end position
+    print(f"{rover1.x_position} {rover1.y_position} {rover1.heading}")
+    # Print rover2 end position
+    print(f"{rover2.x_position} {rover2.y_position} {rover2.heading}")
 
 if __name__ == "__main__":
     main()

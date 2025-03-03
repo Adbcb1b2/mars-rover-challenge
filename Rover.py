@@ -145,7 +145,7 @@ class Rover:
         Updates the 'heading' attribute, depending on the current direction
         """
         left_rotation_mapping = {"N": "W", "E": "N", "S": "E", "W": "S"}
-        self.__heading = left_rotation_mapping[self.__heading]
+        self.heading = left_rotation_mapping[self.__heading]
 
     # Method to change rover direction by 90 degrees right
     def turn_right(self):
@@ -155,7 +155,7 @@ class Rover:
         Updates the 'heading' attribute, depending on the current direction
         """
         right_rotation_mapping = {"N": "E", "E": "S", "S": "W", "W": "N"}
-        self.__heading = right_rotation_mapping[self.__heading]
+        self.heading = right_rotation_mapping[self.__heading]
 
     # Method to move the rover, directiond determined by current heading
     def move(self):
@@ -165,20 +165,20 @@ class Rover:
         checks the movement will be within the bounds of the plateau before returning.
         """
         # Calculate the new position
-        new_x, new_y = self.__x_position, self.__y_position
+        new_x, new_y = self.x_position, self.y_position
 
-        if self.__heading == "N":
+        if self.heading == "N":
             new_y += 1
-        elif self.__heading == "E":
+        elif self.heading == "E":
             new_x += 1
-        elif self.__heading == "S":
+        elif self.heading == "S":
             new_y -= 1
-        elif self.__heading == "W":
+        elif self.heading == "W":
             new_x -= 1
 
         # Check if the move is within bounds before updating position
         if self.__plateau.is_within_plateau(new_x, new_y):
-            self.__x_position = new_x
-            self.__y_position = new_y
+            self.x_position = new_x
+            self.y_position = new_y
         else:
             raise ValueError("Cannot move rover out of plateau bounds")

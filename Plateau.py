@@ -87,7 +87,7 @@ class Plateau:
             True if within the plateau, False if not within plateau
         """
 
-        return 0 <= x_position <= self.__width and 0 <= y_position <= self.__height
+        return 0 <= x_position <= self.width and 0 <= y_position <= self.height
 
 
 
