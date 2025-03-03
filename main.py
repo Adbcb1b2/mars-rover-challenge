@@ -5,7 +5,14 @@ import Validations
 
 def initialise_plateau():
     """"
-    Prompt the user for plateau dimensions until a valid input is given
+    Prompt the user for plateau dimensions until a valid input is given (int int)
+
+    Returns
+    -------
+    plateau: Plateau
+        an instance of the Plateau object, with the given dimensions
+
+    
     """
     while True:
         # Get input for top-right plateau coordinates
@@ -22,6 +29,20 @@ def initialise_plateau():
 def initialise_rover(plateau, rover_id):
     """
     Prompt the user for a valid start position until a valid input is given
+
+    Parameters
+    ----------
+    plateau: Plateau
+        the plateau in which the rover is moving on 
+
+    rover_id: int
+        the ID of the rover for display purposes
+
+    Returns
+    -------
+    rover: Rover
+        an instance of the Rover class with a valid start position
+    
     """
     while True:
         start_position = input(f"Please enter the start position for Rover {rover_id} (e.g. 1 2 N)")
@@ -44,7 +65,17 @@ def initialise_rover(plateau, rover_id):
             
 def process_rover_movements(rover, rover_id):
     """
-    Prompt the user for movement commands, if valid apply to given rover
+    Prompt the user for movement commands, if valid apply to given rover, if invalid, exit program
+
+    Parameters
+    ----------
+    rover: Rover
+        an instance of the rover the movements are to be applied to 
+
+    rover_id: int
+        the ID of the rover for display purposes
+
+
     """
     
     movements = input(f"Please enter the movement commands for Rover {rover_id} (e.g. LMLMLMLMM)")
@@ -62,11 +93,14 @@ def process_rover_movements(rover, rover_id):
 
 
 def main():
+    # Set the plateau dimensions
     plateau = initialise_plateau()
 
+    # Initialise the first rover, process movements
     rover1 = initialise_rover(plateau, 1)
     process_rover_movements(rover1, 1)
 
+    # Intiialises the second rover, process movements
     rover2 = initialise_rover(plateau, 2)
     process_rover_movements(rover2, 2)
 

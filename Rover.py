@@ -41,6 +41,9 @@ class Rover:
 
         heading: str
             the direction in which the rover is facing ('N', 'E', 'W', 'S') (default = 'N')
+
+        plateau: Plateau
+            the plateau on which the rover is positioned (default is None)
         
         """
         # Private variables, not to be directly manipulated outside of the class
