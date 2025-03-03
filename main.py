@@ -57,7 +57,8 @@ def process_rover_movements(rover, rover_id):
             movements_processor.process_commands(movements)
             return
         except ValueError as error:
-            print(f"Invalid movement commands: {error}. Please try again")
+            print(f"Invalid movement commands: {error}.")
+            exit()
 
 
 def main():

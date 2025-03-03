@@ -160,25 +160,30 @@ class Rover:
     # Method to move the rover, directiond determined by current heading
     def move(self):
         """
-`        Moves the rover one unit forward, in the direction of the current heading
+`       Moves the rover one unit forward, in the direction of the current heading
 
         checks the movement will be within the bounds of the plateau before returning.
+
+        Raises
+        ------
+        ValueError
+            If the movement takes the rover out of the plateau
         """
         # Calculate the new position
         new_x, new_y = self.x_position, self.y_position
 
-        if self.heading == "N":
-            new_y += 1
-        elif self.heading == "E":
-            new_x += 1
-        elif self.heading == "S":
-            new_y -= 1
-        elif self.heading == "W":
-            new_x -= 1
+        if self.heading == 'N':
+            new_x, new_y = self.x_position, self.y_position + 1
+        elif self.heading == 'E':
+            new_x, new_y = self.x_position + 1, self.y_position
+        elif self.heading == 'S':
+            new_x, new_y = self.x_position, self.y_position - 1
+        elif self.heading == 'W':
+            new_x, new_y = self.x_position - 1, self.y_position
 
         # Check if the move is within bounds before updating position
-        if self.__plateau.is_within_plateau(new_x, new_y):
-            self.x_position = new_x
-            self.y_position = new_y
+        if self.plateau.is_within_plateau(new_x, new_y):
+            self.x_position, self.y_position = new_x, new_y
         else:
             raise ValueError("Cannot move rover out of plateau bounds")
+            
