@@ -46,19 +46,19 @@ def process_rover_movements(rover, rover_id):
     """
     Prompt the user for movement commands, if valid apply to given rover
     """
-    while True:
-        movements = input(f"Please enter the movement commands for Rover {rover_id} (e.g. LMLMLMLMM)")
-        try:
-            # Validate input
-            movements = Validations.validate_movement_commands_input(movements)
-            # Initialise Movement Processor, passing the rover instance
-            movements_processor = MovementProcessor(rover)
-            # Apply the comments to the rover
-            movements_processor.process_commands(movements)
-            return
-        except ValueError as error:
-            print(f"Invalid movement commands: {error}.")
-            exit()
+    
+    movements = input(f"Please enter the movement commands for Rover {rover_id} (e.g. LMLMLMLMM)")
+    try:
+        # Validate input
+        movements = Validations.validate_movement_commands_input(movements)
+        # Initialise Movement Processor, passing the rover instance
+        movements_processor = MovementProcessor(rover)
+        # Apply the comments to the rover
+        movements_processor.process_commands(movements)
+        return
+    except ValueError as error:
+        print(f"Invalid movement commands: {error}. Exiting Program")
+        exit()
 
 
 def main():
